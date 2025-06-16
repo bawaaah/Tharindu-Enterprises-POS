@@ -47,4 +47,23 @@ router.post('/', (req, res) => {
   });
 });
 
+router.get('/', (req, res) => {
+  Product.getAll((err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json(rows);
+  });
+});
+
+router.get('/category/:category', (req, res) => {
+  const { category } = req.params;
+  Product.filterByCategory(category, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json(rows);
+  });
+});
+
 module.exports = router;

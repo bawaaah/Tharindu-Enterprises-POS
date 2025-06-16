@@ -35,6 +35,18 @@ const Product = {
   getCategories: (callback) => {
     db.all('SELECT DISTINCT category FROM products', callback);
   }
+
+  ,
+  getAll: (callback) => {
+    db.all('SELECT * FROM products', callback);
+  },
+  filterByCategory: (category, callback) => {
+    db.all(
+      'SELECT * FROM products WHERE category = ?',
+      [category],
+      callback
+    );
+  }
 };
 
 module.exports = Product;
