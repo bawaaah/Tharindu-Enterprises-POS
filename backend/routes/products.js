@@ -66,4 +66,27 @@ router.get('/category/:category', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, category, packet_price, special_price, stock_quantity, unit } = req.body;
+  if (!name || !category || !packet_price || !special_price || !stock_quantity || !unit) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  Product.update(id, { name, category, packet_price, special_price, stock_quantity, unit }, (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to update product' });
+    }
+    res.json({ message: 'Product updated successfully' });
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  Product.delete(id, (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to delete product' });
+    }
+    res.json({ message: 'Product deleted successfully' });
+  });
+});
 module.exports = router;

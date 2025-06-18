@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Pos from './components/Pos';
 import ProductForm from './components/ProductForm';
 import Reports from './components/Reports';
+import Inventory from './components/Inventory';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode'; // Updated import
 
@@ -49,6 +50,10 @@ const App = () => {
         <Route
           path="/reports"
           element={isAuthenticated ? <Reports onLogout={handleLogout} /> : <Reports onLogout={handleLogout} />}
+        />
+        <Route
+          path="/inventory"
+          element={isAuthenticated ? <Inventory onLogout={handleLogout} /> : <Inventory onLogout={handleLogout} />}
         />
         <Route path="*" element={<Navigate to={isAuthenticated ? "/pos" : "/login"} />} />
       </Routes>
