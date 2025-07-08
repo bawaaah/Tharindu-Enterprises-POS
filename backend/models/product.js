@@ -17,9 +17,16 @@ const Product = {
       callback
     );
   },
-  updateStock: (id, quantity, callback) => {
+  updateStockDecrease: (id, quantity, callback) => {
     db.run(
-      'UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ?',
+      'UPDATE products SET stock_quantity = MAX(stock_quantity - ?, 0) WHERE id = ?',
+      [quantity, id],
+      callback
+    );
+  },
+  updateStockIncrease: (id, quantity, callback) => {
+    db.run(
+      'UPDATE products SET stock_quantity = stock_quantity + ? WHERE id = ?',
       [quantity, id],
       callback
     );
@@ -44,6 +51,13 @@ const Product = {
     db.all(
       'SELECT * FROM products WHERE category = ?',
       [category],
+      callback
+    );
+  },
+  delete: (id, callback) => {
+    db.run(
+      'DELETE FROM products WHERE id = ?',
+      [id],
       callback
     );
   }

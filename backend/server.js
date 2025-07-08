@@ -31,6 +31,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/reports', reportRoutes);
 
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(`${new Date().toISOString()} - Error:`, err.message);

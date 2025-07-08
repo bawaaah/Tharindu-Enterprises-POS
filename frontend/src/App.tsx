@@ -4,6 +4,7 @@ import Pos from './components/Pos';
 import ProductForm from './components/ProductForm';
 import Reports from './components/Reports';
 import Inventory from './components/Inventory';
+import InventoryPage from './components/InventoryPage';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode'; // Updated import
 
@@ -53,7 +54,7 @@ const App = () => {
         />
         <Route
           path="/inventory"
-          element={isAuthenticated ? <Inventory onLogout={handleLogout} /> : <Inventory onLogout={handleLogout} />}
+          element={isAuthenticated ? <InventoryPage onLogout={handleLogout} /> : <InventoryPage onLogout={handleLogout} />}
         />
         <Route path="*" element={<Navigate to={isAuthenticated ? "/pos" : "/login"} />} />
       </Routes>

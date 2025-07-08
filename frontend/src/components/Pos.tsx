@@ -180,7 +180,7 @@ const Pos: React.FC<Props> = ({ onLogout }) => {
           <Button color="inherit" href="/pos" sx={{ mr: 2 }}>
         POS
           </Button>
-          <Button color="inherit" href="/products" sx={{ mr: 2 }}>
+          <Button color="inherit" href="/inventory" sx={{ mr: 2 }}>
         Inventory
           </Button>
           <Button color="inherit" href="/reports" sx={{ mr: 2 }}>

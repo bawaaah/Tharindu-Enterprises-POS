@@ -42,13 +42,24 @@ export const getReport = async (type: 'daily' | 'weekly' | 'monthly', date: stri
   const response = await api.get('/reports', { params: { type, date } });
   return response.data;
 };
-export const updateProduct = async (id: string, product: Omit<Product, 'id'>) => {
-  const response = await api.put(`/products/${id}`, product);
+
+export const updateProductIncrease = async (id: number, quantity: number) => {
+  const response = await api.post(`/products/${id}/update-stockIncrease`, { quantity });
   return response.data;
 };
 
-export const deleteProduct = async (id: string) => {
-  const response = await api.delete(`/products/${id}`);
+export const updateProductDecrease = async (id: string, quantity: number) => {
+  const response = await api.patch(`/products/${id}/update-stockDecrease`, { quantity });
+  return response.data;
+};
+
+export const deleteProduct = async (id: number) => {
+  const response = await api.delete(`/products/delete/${id}`);
+  return response.data;
+};
+
+export const getProducts = async (): Promise<Product[]> => {
+  const response = await api.get('/products/all');
   return response.data;
 };
 export default api;
