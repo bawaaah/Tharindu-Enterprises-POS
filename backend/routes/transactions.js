@@ -64,7 +64,7 @@ router.post('/', (req, res) => {
     // Update inventory for regular products
     items.forEach((item) => {
       if (!item.is_custom) {
-        Product.updateStock(item.id, item.quantity, (err) => {
+        Product.updateStockDecrease(item.id, item.quantity, (err) => {
           if (err) {
             console.error(`Failed to update stock for product ${item.id}`);
           }
